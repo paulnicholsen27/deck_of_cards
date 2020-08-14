@@ -4,7 +4,7 @@ class Card:
         if color not in ["red", "yellow", "green"]:
             raise ValueError
         self.color = color 
-        if rank not in range(0, 9):
+        if rank not in range(0, 10):
             raise ValueError
         self.rank = rank 
     

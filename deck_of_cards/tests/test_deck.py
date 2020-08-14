@@ -1,6 +1,7 @@
 import pytest
-
+from deck_of_cards.card import Card
 from deck_of_cards.deck import Deck
+from deck_of_cards.exceptions import EndOfDeckError
 
 
 def test_construction():
@@ -16,7 +17,7 @@ def test_shuffle():
 def test_draw_card():
     deck = Deck()
     card = deck.draw()
-    assert (card.classname == "Card")
+    assert (type(card).__name__ == "Card")
     assert (len(deck.cards) == 29)
     assert (card not in deck.cards)
 
@@ -29,8 +30,9 @@ def test_end_of_deck():
 
 def test_sort_cards(mocker):
     deck = Deck()
-    mocker.patch(
-        deck.cards,
+    mocker.patch.object(
+        deck,
+        "cards",
         return_value=[Card("red", 7),
                       Card("red", 0),
                       Card("red", 3),
