@@ -23,7 +23,7 @@ def test_draw_card():
 
 def test_end_of_deck():
     deck = Deck()
-    for n in range(30):
+    for _ in range(30):
         deck.draw()
     with pytest.raises(EndOfDeckError):
         deck.draw()
@@ -40,12 +40,3 @@ def test_sort_cards(mocker):
     correct_order = [('green', 8), ('red', 0), ('red', 3), ('red', 7), ('yellow', 1), ('yellow', 2)]
     sorted_cards = [(card.color, card.rank) for card in deck.cards]
     assert (correct_order == sorted_cards)
-
-def test_draw_hand():
-    deck = Deck()
-    hand = deck.draw_three()
-    assert (len(hand) == 3)
-
-
-
-    
