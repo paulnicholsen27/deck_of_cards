@@ -30,23 +30,16 @@ def test_end_of_deck():
 
 def test_sort_cards(mocker):
     deck = Deck()
-    mocker.patch.object(
-        deck,
-        "cards",
-        return_value=[Card("red", 7),
-                      Card("red", 0),
-                      Card("red", 3),
-                      Card("yellow", 2),
-                      Card("yellow", 1),
-                      Card("green", 8)]
-    )
+    deck.cards = [Card("red", 7),
+                  Card("red", 0),
+                  Card("red", 3),
+                  Card("yellow", 2),
+                  Card("yellow", 1),
+                  Card("green", 8)]
     deck.sort(["green", "red", "yellow"])
-    assert (deck.cards == [Card("green", 8),
-                           Card("red", 0),
-                           Card("red", 3),
-                           Card("red", 7),
-                           Card("yellow", 1),
-                           Card("yellow", 2)])
+    correct_order = [('green', 8), ('red', 0), ('red', 3), ('red', 7), ('yellow', 1), ('yellow', 2)]
+    sorted_cards = [(card.color, card.rank) for card in deck.cards]
+    assert (correct_order == sorted_cards)
 
 def test_draw_hand():
     deck = Deck()

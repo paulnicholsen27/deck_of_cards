@@ -16,3 +16,8 @@ class Deck:
         if len(self.cards) == 0:
             raise EndOfDeckError
         return self.cards.pop()
+
+    def sort(self, colors):
+        color_sorter = {color: index for index, color in enumerate(colors)}
+        self.cards = sorted(self.cards, key=lambda card: (color_sorter[card.color], card.rank))
+
