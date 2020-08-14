@@ -1,4 +1,5 @@
 import pytest
+from pytest_mock import mocker
 from deck_of_cards.card import Card 
 
 def test_card_properties():
@@ -11,9 +12,9 @@ def test_card_score():
     yellow_card = Card("yellow", 4)
     red_card = Card("red", 8)
 
-    assert(green_card.score == 5) # 1 * 5
-    assert(yellow_card.score == 8) # 2 * 4
-    assert(red_card.score == 24) # 3 * 8
+    assert(green_card.score() == 5) # 1 * 5
+    assert(yellow_card.score() == 8) # 2 * 4
+    assert(red_card.score() == 24) # 3 * 8
 
 def test_valid_input():
     with pytest.raises(ValueError):
