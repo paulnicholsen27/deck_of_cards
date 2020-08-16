@@ -6,7 +6,7 @@ from deck_of_cards.exceptions import EndOfDeckError
 
 def test_construction():
     deck = Deck()
-    assert len(deck.cards) == 30 # 3 colors ranked 0-9
+    assert len(deck.cards) == 3 * 10 # 3 colors ranked 0-9
 
 def test_shuffle():
     deck = Deck()
@@ -37,6 +37,24 @@ def test_sort_cards():
                   Card("yellow", 1),
                   Card("green", 8)]
     deck.sort(["green", "red", "yellow"])
-    correct_order = [('green', 8), ('red', 0), ('red', 3), ('red', 7), ('yellow', 1), ('yellow', 2)]
+    correct_order = [("green", 8), ("red", 0), ("red", 3), ("red", 7), ("yellow", 1), ("yellow", 2)]
     sorted_cards = [(card.color, card.rank) for card in deck.cards]
     assert (correct_order == sorted_cards)
+
+def test_sort_cards_by_default_value():
+    deck = Deck()
+    deck.cards = [Card("red", 7),
+                  Card("red", 0),
+                  Card("red", 3),
+                  Card("yellow", 2),
+                  Card("yellow", 1),
+                  Card("green", 8)]
+    deck.sort()
+    correct_order = [("red", 0), ("red", 3), ("red", 7), ("yellow", 1), ("yellow", 2), ("green", 8)]
+    sorted_cards = [(card.color, card.rank) for card in deck.cards]
+    assert (correct_order == sorted_cards)   
+
+def test_sort_cards_raises_error_on_invalid_color_list():
+    deck = Deck()
+    with pytest.raises(ValueError):
+        deck.sort(["purple"])

@@ -16,7 +16,7 @@ def test_card_score():
     assert(yellow_card.score() == 8) # 2 * 4
     assert(red_card.score() == 24) # 3 * 8
 
-def test_valid_input():
+def test_valid_input_for_card_creation():
     with pytest.raises(ValueError):
         Card("purple", 7)
 
