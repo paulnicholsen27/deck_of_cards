@@ -1,8 +1,8 @@
 import pytest
+
 from deck_of_cards.card import Card
 from deck_of_cards.deck import Deck
 from deck_of_cards.exceptions import EndOfDeckError
-
 
 def test_construction():
     deck = Deck()
@@ -28,7 +28,7 @@ def test_end_of_deck():
     with pytest.raises(EndOfDeckError):
         deck.draw()
 
-def test_sort_cards(mocker):
+def test_sort_cards():
     deck = Deck()
     deck.cards = [Card("red", 7),
                   Card("red", 0),

@@ -2,6 +2,7 @@ from random import shuffle
 
 from deck_of_cards.card import Card
 from deck_of_cards.exceptions import EndOfDeckError
+
 class Deck:
     
     def __init__(self):

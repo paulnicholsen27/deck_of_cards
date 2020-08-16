@@ -1,5 +1,5 @@
 import pytest
-from pytest_mock import mocker
+
 from deck_of_cards.card import Card 
 
 def test_card_properties():
